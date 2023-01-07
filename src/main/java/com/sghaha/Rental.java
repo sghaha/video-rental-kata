@@ -1,5 +1,7 @@
 package com.sghaha;
 
+import com.sghaha.movie.Movie;
+
 public class Rental {
 
     private Movie movie;
@@ -16,5 +18,13 @@ public class Rental {
 
     public Movie getMovie() {
         return movie;
+    }
+
+    public double getChargeFor() {
+        return movie.calculateCharge(daysRented);
+    }
+
+    public int getPointFor() {
+        return movie.calculatePoint(daysRented);
     }
 }

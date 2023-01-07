@@ -1,6 +1,6 @@
-package com.sghaha;
+package com.sghaha.movie;
 
-public class Movie {
+public abstract class Movie {
 
     public static final int CHILDRENS = 2;
     public static final int NEW_RELEASE = 1;
@@ -25,5 +25,7 @@ public class Movie {
         return title;
     }
 
+    public abstract double calculateCharge(int daysRented);
 
+    public abstract int calculatePoint(int daysRented);
 }

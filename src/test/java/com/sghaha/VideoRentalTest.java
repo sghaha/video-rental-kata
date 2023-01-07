@@ -2,7 +2,10 @@ package com.sghaha;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
+import com.sghaha.movie.Childrens;
+import com.sghaha.movie.Movie;
+import com.sghaha.movie.NewRelease;
+import com.sghaha.movie.Regular;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,11 +21,24 @@ class VideoRentalTest {
         c = new Customer(NAME);
     }
 
-    private static Rental getRental(int priceCode, int daysRented) {
-        return new Rental(new Movie(TITLE, priceCode), daysRented);
+    private Rental getRental(int priceCode, int daysRented) {
+        return new Rental(getMovie(TITLE, priceCode), daysRented);
     }
 
-    private static String makeStatement1Item(double charge, int point) {
+    private Movie getMovie(String title, int priceCode) {
+        switch (priceCode) {
+            case Movie.REGULAR:
+                return new Regular(title);
+            case Movie.NEW_RELEASE:
+                return new NewRelease(title);
+            case Movie.CHILDRENS:
+                return new Childrens(title);
+            default:
+                return null;
+        }
+    }
+
+    private String makeStatement1Item(double charge, int point) {
         return "Rental Record for "
             + NAME + "\n"
             + "\t" + TITLE + "\t" + charge + "\n"
@@ -48,7 +64,7 @@ class VideoRentalTest {
         }
     }
 
-    private static double calChargeForRegular(int daysRented) {
+    private double calChargeForRegular(int daysRented) {
         if (daysRented <= 2) {
             return 2.0;
         } else {
@@ -74,11 +90,11 @@ class VideoRentalTest {
         }
     }
 
-    private static double calChargeForNewRelease(int daysRented) {
+    private double calChargeForNewRelease(int daysRented) {
         return daysRented * 3.0;
     }
 
-    private static int calPointForNewRelease(int daysRented) {
+    private int calPointForNewRelease(int daysRented) {
         if (daysRented < 2) {
             return 1;
         }
@@ -103,14 +119,14 @@ class VideoRentalTest {
         }
     }
 
-    private static double calChargeForChildren(int daysRented) {
-        if (daysRented <= 3 ) {
+    private double calChargeForChildren(int daysRented) {
+        if (daysRented <= 3) {
             return 1.5;
         }
-        return (daysRented-3) * 1.5 + 1.5;
+        return (daysRented - 3) * 1.5 + 1.5;
     }
 
-    private static int calPointForChildren(int daysRented) {
+    private int calPointForChildren(int daysRented) {
         if (daysRented < 2) {
             return 1;
         }
