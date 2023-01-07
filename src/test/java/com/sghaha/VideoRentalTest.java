@@ -8,12 +8,6 @@ import org.junit.jupiter.api.Test;
 class VideoRentalTest {
 
     @Test
-    @DisplayName("초기 테스트")
-    void name() {
-        assertThat(10).isEqualTo(10);
-    }
-
-    @Test
     @DisplayName("기본 동작 테스트")
     void t1() {
         Customer c = new Customer("Kim");
@@ -29,6 +23,5 @@ class VideoRentalTest {
                 + "Amount owed is 2.0\n"
                 + "You earned 1 frequent renter points"
         );
-
     }
 }
